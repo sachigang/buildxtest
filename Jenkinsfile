@@ -8,13 +8,12 @@ pipeline {
        
     }
     
-    stages {
+   
         stage('Clone repository') {               
-             
             checkout scm    
       }  
       
-            stage('Build ARMv7 Docker and Push to Registries') {
+        stage('Build ARMv7 Docker and Push to Registries') {
             agent {
                 label 'arm'
             }
@@ -30,7 +29,7 @@ pipeline {
                 }
             }
         
-    }
+    
 
     }
 
