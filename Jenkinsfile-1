@@ -18,6 +18,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building image..'
+                sh 'docker buildx create --use --name multiarch'
                 sh 'docker buildx build -t $DOCKER_ID/sachi:latest .'
             }
         }
