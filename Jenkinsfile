@@ -15,7 +15,7 @@ pipeline {
       
         stage('Build ARMv7 Docker and Push to Registries') {
             agent {
-                label 'arm'
+                label 'Jenkins_Docker_Agent'
             }
             steps {
                 script {
