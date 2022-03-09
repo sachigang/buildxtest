@@ -12,18 +12,12 @@ node {
       }  
       
         stage('Build ARMv7 Docker and Push to Registries') {
-             steps {
-                script {
-                    sh 'whoami'
-                    sh 'env'
-                    docker.withRegistry( 'https://docker.swiftsense.biz/', 'registry-credential' ) {
+                  docker.withRegistry( 'https://docker.swiftsense.biz/', 'registry-credential' ) {
                         dockerImage = docker.build docker_img + ":armv7"
                         dockerImage.push()
                     }
-                    
-                }
-            }
-        
+                
+      
     
 
     }
