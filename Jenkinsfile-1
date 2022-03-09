@@ -7,14 +7,7 @@ pipeline {
     }
 
     stages {
-        
-        stage('multi-arch installation') {
-        steps {
-        echo 'installing multi-arch...'
-        sh 'docker buildx create --use --name multiarch'
-        }
-        
-     }
+      
         stage('Init') {
             steps {
                 echo 'Initializing..'
