@@ -1,4 +1,4 @@
-FROM  --platform=linux/arm/v7 ubuntu:latest
+FROM  ubuntu:latest
 RUN  apt-get update && \
      apt-get install git -y
  
