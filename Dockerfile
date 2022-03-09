@@ -1,7 +1,9 @@
-FROM debian:buster-slim AS gitter
+FROM --platform=$TARGETPLATFORM python:3.8-alpine
 
-RUN apt-get update && \
-    apt-get install git -y
+WORKDIR /app
 
-USER root
-CMD [/bin/sh]
+RUN pip3 install pytest
+
+COPY . .
+
+CMD [ "python3", "cotu.py"]
