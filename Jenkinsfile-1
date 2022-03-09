@@ -18,19 +18,19 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building image..'
-                sh 'docker buildx build -t $DOCKER_ID/cotu:latest .'
+                sh 'docker buildx build -t $DOCKER_ID/sachi:latest .'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'docker run --rm -e CI=true $DOCKER_ID/cotu pytest'
+                sh 'docker run --rm -e CI=true $DOCKER_ID/sachi pwd'
             }
         }
         stage('Publish') {
             steps {
                 echo 'Building and Publishing multi-arch image to DockerHub..'
-                sh 'docker buildx build --push --platform linux/arm/v6 -t $DOCKER_ID/cotu:latest .'
+                sh 'docker buildx build --push --platform linux/arm/v6 -t $DOCKER_ID/sachi:latest .'
             }
         }
         stage('Cleanup') {
