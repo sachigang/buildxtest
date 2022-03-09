@@ -12,9 +12,9 @@ node {
       }  
       
         stage('Build ARMv7 Docker and Push to Registries') {
+              dockerImage = docker.build docker_img + ":armv7"
                   docker.withRegistry( 'https://docker.swiftsense.biz/', 'registry-credential' ) {
-                        dockerImage = docker.build docker_img + ":armv7"
-                        dockerImage.push()
+                      dockerImage.push()
                     }
                 
       
