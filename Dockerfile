@@ -1,6 +1,7 @@
-FROM  ubuntu:latest
-RUN  apt-get update && \
-     apt-get install git -y
+FROM debian:buster-slim AS gitter
+
+RUN apt-get update && \
+    apt-get install git -y
  
 CMD [/bin/sh]
 
