@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_ID = credentials('DOCKER_ID')
+        DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
+    }
+
+    stages {
+        
+        stage('multi-arch installation') {
+        steps {
+        echo 'installing multi-arch...'
+        sh 'docker buildx create --platform "linux/arm/v7" --name container-builder --use'
+        sh 'docker run --rm --privileged multiarch/qemu-user-static --reset -p yes'
+        }
+        
+     }
+        stage('Init') {
+            steps {
+                echo 'Initializing..'
+                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+                echo "Current branch: ${env.BRANCH_NAME}"
+                sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building image..'
+                sh 'docker buildx build --push --platform linux/arm/v6 -t $DOCKER_ID/sachi:latest .'
+            }
+        }
+        
+        
+     }
+}
