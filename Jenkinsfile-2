@@ -27,7 +27,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building image..'
-                sh 'docker buildx build --push --platform linux/arm/v6 -t $DOCKER_ID/sachi:latest .'
+                sh 'docker buildx build --push --platform linux/arm/v7 -t $DOCKER_ID/sachi:latest .'
             }
         }
         
